@@ -29,6 +29,9 @@ function getAvailabilites(instructors){
         console.log(times);
     });
     }
+
+    // create object representing 24 hours/day and 12 hours/day pt with correct time format
+    // iterate through each instructor calendar, convert time to correct format, update time object
 }
 
 getAvailabilites(instructors)

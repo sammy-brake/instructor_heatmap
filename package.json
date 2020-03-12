@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "acuityscheduling": "^0.1.9",
+    "cal-heatmap": "^3.6.2",
     "express": "^4.17.1"
   }
 }
