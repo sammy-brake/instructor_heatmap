@@ -48,41 +48,104 @@ let calData = {
 
 
 //   function takes in an array and returns array of availabilities for multiple instructors
-function getAvailabilites(instructors) {
+function getTimes(instructors) {
     // for loop to iterate through array of instructor ids
     for (let i = 0; i < list.length; i++) {
         instructorId = instructors[i].toString()
+        console.log(instructorId)
         // request to acuity API for the availabilites of an instructor for a particular date and appointment type
-        acuity.request('/availability/times?date=' + date + '&appointmentTypeID=' + appointmentType + '&calendarID=' + instructorId, function (err, res, times) {
+        
+       times = acuity.request('/availability/times?date=' + date + '&appointmentTypeID=' + appointmentType + '&calendarID=' + instructorId, function (err, res, times) {
             if (err) return console.error(err);
             console.log(times)
-            
+            return times;
         })
-        times = times;
-}
-}
-getAvailabilites(list);
+       
+        
+
+
+}}
+
+
+
+
+
+
+
+
+
+getTimes(list)
+console.log("please work")
 console.log(times)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// console.log(times)
+// before, I was looping through each instructor and adding to table. figure out how to fix this. now i have multiple arrays. need new loop 
+
+// function convertTimes(list){
+
+//     let convert = getTimes(list);
+//     console.log('times are in convert')
+//     console.log(convert)
+//     // for (let v=0;v <list.length; v++){
+//         // unixTime = moment(convert[v]["time"]).format("x").toString();
+//         // // console.log("what I want to check:")
+//         // console.log('result')
+//         // console.log(calData[unixTime])
+//         // // console.log(unixTime)
+//         // if(calData[unixTime] != undefined){
+//         //     console.log("true")
+//         //     calData[unixTime] = calData[unixTime]+1;
+//         // }else{
+//         //     console.log("false");
+//         // }
+    
+//     };
+
+
+
+// convertTimes(list);
 
 // moved out of request
 // if (err) return console.error(err);         
-//             for (let v=0;v <times.length; v++){
-//                 unixTime = moment(times[v]["time"]).format("x").toString();
-//                 // console.log("what I want to check:")
-//                 console.log('result')
-//                 console.log(calData[unixTime])
-//                 // console.log(unixTime)
-//                 if(calData[unixTime] != undefined){
-//                     console.log("true")
-//                     calData[unixTime] = calData[unixTime]+1;
-//                 }else{
-//                     console.log("false");
-//                 }
+            // for (let v=0;v <times.length; v++){
+            //     unixTime = moment(times[v]["time"]).format("x").toString();
+            //     // console.log("what I want to check:")
+            //     console.log('result')
+            //     console.log(calData[unixTime])
+            //     // console.log(unixTime)
+            //     if(calData[unixTime] != undefined){
+            //         console.log("true")
+            //         calData[unixTime] = calData[unixTime]+1;
+            //     }else{
+            //         console.log("false");
+            //     }
             
-//             };
-//             console.log("data before return")
-            
-//             res.send(calData);
+            // };
+//           
             
 
 // end of moved out of request
