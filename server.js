@@ -17,31 +17,31 @@ let appointmentType = '3660432';
 let instructorId;
 let unixTime;
 let list = [3580951, 3357862, 2367440];
+
 let calData = {
-    1584514800: 0,
-    1584518400: 0,
-    1584522000: 0,
-    1584525600: 0,
-    1584529200: 0,
-    1584532800: 0,
-    1584536400: 0,
-    1584540000: 0,
-    1584543600: 0,
-    1584547200: 0,
-    1584550800: 0,	
-    1584554400: 0,	
-    1584558000: 0,	
-    1584561600: 0,	
-    1584565200: 0,	
-    1584568800: 0,	
-    1584572400: 0,
-    1584576000: 0,	
-    1584579600: 0,	
-    1584583200: 0,	
-    1584586800: 0,	
-    1584590400: 0,	
-    1584594000: 0,
-    1584597600: 0
+    1584514800000: 0,
+    1584518400000: 0,
+    1584522000000: 0,
+    1584525600000: 0,
+    1584529200000: 0,
+    1584532800000: 0,
+    1584536400000: 0,
+    1584540000000: 0,
+    1584543600000: 0,
+    1584547200000: 0,
+    1584554400000: 0,	
+    1584558000000: 0,	
+    1584561600000: 0,	
+    1584565200000: 0,	
+    1584568800000: 0,	
+    1584572400000: 0,
+    1584576000000: 0,	
+    1584579600000: 0,	
+    1584583200000: 0,	
+    1584586800000: 0,	
+    1584590400000: 0,	
+    1584594000000: 0,
+    1584597600000: 0
     }
 
 
@@ -54,15 +54,23 @@ function getAvailabilites(instructors) {
         instructorId = instructors[i].toString()
         // request to acuity API for the availabilites of an instructor for a particular date and appointment type
         acuity.request('/availability/times?date=' + date + '&appointmentTypeID=' + appointmentType + '&calendarID=' + instructorId, function (err, res, times) {
-            if (err) return console.error(err);  
-            // console.log(times[0]['time'].value)        
+            if (err) return console.error(err);         
             for (let v=0;v <times.length; v++){
-                unixTime = moment(times[v]["time"]).format("x")
+                unixTime = moment(times[v]["time"]).format("x").toString();
+                // console.log("what I want to check:")
+                console.log('result')
+                console.log(calData[unixTime])
                 // console.log(unixTime)
-                console.log(times[0])
-                // console.log(calData)
-                
+                if(calData[unixTime] != undefined){
+                    console.log("true")
+                    calData[unixTime] = calData[unixTime]+1;
+                }else{
+                    console.log("false");
+                }
+                console.log("here is final data")
+                console.log(calData)
             };
+            
         });
     }
 }
