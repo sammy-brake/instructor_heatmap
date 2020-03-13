@@ -17,7 +17,32 @@ let appointmentType = '3660432';
 let instructorId;
 let unixTime;
 let list = [3580951, 3357862, 2367440];
-let calData = {};
+let calData = {
+    1584514800: 0,
+    1584518400: 0,
+    1584522000: 0,
+    1584525600: 0,
+    1584529200: 0,
+    1584532800: 0,
+    1584536400: 0,
+    1584540000: 0,
+    1584543600: 0,
+    1584547200: 0,
+    1584550800: 0,	
+    1584554400: 0,	
+    1584558000: 0,	
+    1584561600: 0,	
+    1584565200: 0,	
+    1584568800: 0,	
+    1584572400: 0,
+    1584576000: 0,	
+    1584579600: 0,	
+    1584583200: 0,	
+    1584586800: 0,	
+    1584590400: 0,	
+    1584594000: 0,
+    1584597600: 0
+    }
 
 
 
@@ -29,30 +54,21 @@ function getAvailabilites(instructors) {
         instructorId = instructors[i].toString()
         // request to acuity API for the availabilites of an instructor for a particular date and appointment type
         acuity.request('/availability/times?date=' + date + '&appointmentTypeID=' + appointmentType + '&calendarID=' + instructorId, function (err, res, times) {
-            if (err) return console.error(err);
-            // console.log("times run " +i)
-            // console.log("key...")
-
-            // console.log(times[0]['time'])            
-            // console.log("value:")  
+            if (err) return console.error(err);  
             // console.log(times[0]['time'].value)        
             for (let v=0;v <times.length; v++){
                 unixTime = moment(times[v]["time"]).format("x")
-                calData[unixTime] = 1;
-                console.log(calData)
+                // console.log(unixTime)
+                console.log(times[0])
+                // console.log(calData)
                 
             };
-
-
         });
     }
-    
-
-
 }
+getAvailabilites(list);
 
 
-console.log(getAvailabilites(list))
 // convert acuity time to unixtime
     // unixTimestamp = moment(times[0]["time"]).format("x")
     //     console.log(unixTimestamp);
