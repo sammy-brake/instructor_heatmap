@@ -17,7 +17,7 @@ let appointmentType = '3660432';
 let instructorId;
 let unixTime;
 let list = [3580951, 3357862, 2367440];
-
+let times;
 let calData = {
     1584514800000: 0,
     1584518400000: 0,
@@ -54,27 +54,39 @@ function getAvailabilites(instructors) {
         instructorId = instructors[i].toString()
         // request to acuity API for the availabilites of an instructor for a particular date and appointment type
         acuity.request('/availability/times?date=' + date + '&appointmentTypeID=' + appointmentType + '&calendarID=' + instructorId, function (err, res, times) {
-            if (err) return console.error(err);         
-            for (let v=0;v <times.length; v++){
-                unixTime = moment(times[v]["time"]).format("x").toString();
-                // console.log("what I want to check:")
-                console.log('result')
-                console.log(calData[unixTime])
-                // console.log(unixTime)
-                if(calData[unixTime] != undefined){
-                    console.log("true")
-                    calData[unixTime] = calData[unixTime]+1;
-                }else{
-                    console.log("false");
-                }
-                console.log("here is final data")
-                console.log(calData)
-            };
+            if (err) return console.error(err);
+            console.log(times)
             
-        });
-    }
+        })
+        times = times;
+}
 }
 getAvailabilites(list);
+console.log(times)
+
+// moved out of request
+// if (err) return console.error(err);         
+//             for (let v=0;v <times.length; v++){
+//                 unixTime = moment(times[v]["time"]).format("x").toString();
+//                 // console.log("what I want to check:")
+//                 console.log('result')
+//                 console.log(calData[unixTime])
+//                 // console.log(unixTime)
+//                 if(calData[unixTime] != undefined){
+//                     console.log("true")
+//                     calData[unixTime] = calData[unixTime]+1;
+//                 }else{
+//                     console.log("false");
+//                 }
+            
+//             };
+//             console.log("data before return")
+            
+//             res.send(calData);
+            
+
+// end of moved out of request
+// console.log(calData)
 
 
 // convert acuity time to unixtime
